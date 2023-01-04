@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/reserve.css"/>
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="../../js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/common.js" ></script>
+		<script type="text/javascript" src="../../js/data.js"></script>
+		<script type="text/javascript" src="../../js/dept/deptList.js" ></script>
+	</head>
+	<body>
+		<!--添加部门的form表单-->
+		<!-- <form>
+			<div style="margin:50px;">
+				部门名称：<input type="text" id="name" />
+				<br /><br />
+				详细描述：<input type="text" id="remark" />
+				<br /><br /><br />
+				<input type="button" value="保存" onclick="saveDept()" />
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="reset" value="取消" onclick="window.location.href='deptList.html'"  />
+			</div>
+		</form> -->
+		<ul class="breadcrumb">
+			当前位置：
+			<li>
+				<a href="javascript:void(0);" onclick="GoHome()">Home</a>
+			</li>
+			<li>
+				<a href="#">部门管理</a>
+			</li>
+			<li>
+				<a href="#">添加部门</a>
+			</li>
+		</ul>
+
+		<form style="height:1000px">
+			<div style="margin:50px;">
+				<div class="col-md-2">
+					<div class="row">
+						<div class="form-group">
+							<label for="title" class="control-label">部门名称：</label>
+							<input type="text" id="name" class="form-control"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<label for="num" class="control-label">详细描述：</label>
+							<input type="text" id="remark" class="form-control"/>
+						</div>
+					</div>
+					<div class="row">
+						<br/><br/><br/>
+						<input type="button" value="保存" onclick="saveDept()" class="btn btn-info" id="btn-reserve"/>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="reset" value="取消" onclick="window.location.href='deptList.html'"  class="btn btn-info" id="btn-cancel"/>
+					</div>
+				</div>
+				&nbsp;&nbsp;
+		</form>
+
+	</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/Highcharts/code/highcharts.js"></script>
+		<script src="../js/Highcharts/code/modules/exporting.js"></script>
+		<script src="../js/Highcharts/code/modules/export-data.js"></script>
+		<script type="text/javascript" src="statistics.js"></script>
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/People.css" />
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/demo.css" />
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap-datetimepicker.min.css" media="screen" />
+		<script type="text/javascript" src="../../js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/paginathing.js" ></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap-datetimepicker.min.js"></script>
+		<!-- <script src="../js/statistics/statistics1.js"></script> -->
+	</head>
+	<body>
+		<!-- 导航菜单栏1.0版本 -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">统计数据</a></li>
+		</ul>
+		<!-- 面包屑导航1.0 -->
+		<ul class="breadcrumb">
+			当前位置：
+			<li><a href="#">Home</a></li>
+			<li><a href="">人员管理</a></li>
+			<li><a onclick="showStatistics()">统计数据</a></li>
+			<li class="active">部门统计</li>
+		</ul>
+		<div style="margin:50px;">
+			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+			<script type="text/javascript">
+				var st1 = [];
+				var deptJsonArray = window.parent.deptJsonArray;
+				var employeeJsonArray = window.parent.employeeJsonArray;
+				for(var i = 0; i < deptJsonArray.length; i++) {
+					var dep = deptJsonArray[i];
+					var count=0;
+					var totalcount = 0;
+					if(dep.dname=='undefined'){
+						alert("存在已删除部门 请及时更新员工信息");
+						dep.dname = "已删除部门";
+					}
+					if (dep!=undefined){
+						for (var j=0;j<employeeJsonArray.length;j++){
+							var employee = employeeJsonArray[j];
+							if(employee.name!="undefined"){
+								totalcount++;
+								if(employee.depid==dep.did){
+									count++;
+								}
+							}
+						}
+						var y = count/totalcount;
+						var depData = {"name":dep.dname,"y":y};
+						st1[i] = depData;
+
+					}
+					// dep.dname = "undefined";
+
+				}
+
+				Highcharts.chart('container', {
+				    chart: {
+				        plotBackgroundColor: null,
+				        plotBorderWidth: null,
+				        plotShadow: false,
+				        type: 'pie'
+				    },
+				    title: {
+				        text: '部门情况统计'
+				    },
+				    tooltip: {
+				        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				    },
+				    plotOptions: {
+				        pie: {
+				            allowPointSelect: true,
+				            cursor: 'pointer',
+				            dataLabels: {
+				                enabled: true,
+				                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+				                style: {
+				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				                }
+				            }
+				        }
+				    },
+				    series: [{
+				        name: '部门',
+				        colorByPoint: true,
+				        data: st1
+				    }]
+				});
+
+				
+			</script>
+		</div>
+        
+	</body>
+</html>

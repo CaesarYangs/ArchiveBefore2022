@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="js/bootstrap-3.4.1-dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="css/mainBody.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+		<script type="text/javascript" src="js/room/findRoom.js" ></script>
+		<script type="text/javascript" src="js/room/reserve.js" ></script>
+		<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+		<script> var loginUserId = getParam("loginUserId"); </script>
+	</head>
+	<body>
+	<div id="main">
+		<!--首页头部部分-->
+		<header>
+			<!--头部logo图片-->
+
+<!--			<img src="img/main/head/logo/LOGO.jpg" />-->
+			<!--SmartMeeting会议管理系统显示区域-->
+			<span style="padding-left: 15px"></span>
+			<span style="font-weight:bold;line-height:44px;font-size:18px;font-family:'Britannic Bold';color:#000000;"  href="javascript:void(0);" onclick="gohome()" >SmartMeeting</span>
+			<span style="font-weight:bold;line-height:44px;font-size:18px;font-family:'Segoe UI Emoji Bold';color:#1B6DE8;" href="javascript:void(0);" onclick="gohome()">会议管理系统</span>
+			<span style="font-weight:bold;line-height:44px;font-size:9px;font-family:'Segoe UI Emoji Bold';color:#6EBE3B;"  href="javascript:void(0);" onclick="gohome()" >2021.1.3</span>
+			
+			<!--头部右侧区域-->
+			<div class="headerRight">
+				<span id="loginSpan">程序猿（调试界面）</span>
+				<img style="margin-left:20px;" src="img/StatBar_time.gif" />
+				<!--展现当前系统时间区域-->
+				<span id="nowTime"></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a data-toggle="modal" data-target="#updatePassword">修改密码</a>
+				<!-- <a onclick="changePwd()">修改密码</a> -->
+				&nbsp;&nbsp;
+				<a href="#" onclick="logout()">退出登录</a>
+			</div>
+		</header>
+		
+		<!--首页主体部分，采用bootstrap栅格-->
+		<div class="container-fluid">    
+		    <div class="row">
+		    	<!--左侧菜单栏区域，占位2列-->
+		        <div style=" margin:0;padding:0;" class="col-md-2 left">
+		        	<!--菜单栏区域采用ul无序列表的形式-->
+					<div align="center"  class="basicLogo">
+						<img class="p1"src="img/imgs1/Group 1.png" onclick="expandAll()"/>
+						<!-- <img class="p1"src="img/round-table.png" /> -->
+					</div>
+
+			        <ul class="menu" >
+			            <li class="active">
+			            	<a href="#" style="margin-right: 50px; font-size: 15px;" >个人通知</a>
+			            	<span class="glyphicon glyphicon-menu-right"></span>
+			            	<ul class="sub-menu">
+								<li>
+									<img class="headPics" src="img/imgs1/notifications_none.png" />
+									<a class="subactive" href="#" id="meetNotice" onclick="meetNotice()">最新通知</a>
+								</li>
+								<li>
+									<img class="headPics" src="img/imgs1/domain_verification.png" />
+									<a href="#" id="meetRer" onclick="meetRer(loginUserId)">我的预定</a>
+								</li>
+								<li>
+									<img class="headPics" src="img/imgs1/people_outline.png" />
+									<a href="#" id="meetSearch" onclick="meetSearch()">我的会议</a>
+								</li>
+				            </ul>
+			            </li>
+			            <li class="active">
+			            	<a href="#" style="margin-right: 50px;font-size: 15px">人员管理</a>
+			            	<span class="glyphicon glyphicon-menu-right"></span>
+			            	<ul class="sub-menu">
+				               <!-- <li>
+									<img class="headPics" src="img/imgs1/list_alt.png" />
+								   	<a href="#" id="deptSearch" onclick="deptSearch()">部门管理</a>
+								</li>
+				               <li>
+								   	<img class="headPics" src="img/imgs1/contacts.png" />
+								   	<a href="#" id="addPeople" onclick="addPeoplePage()">员工注册</a>
+								</li>
+				               <li>
+									<img class="headPics" src="img/imgs1/call_split.png" />
+								   	<a href="#" id="regCheck" onclick="regCheck()">注册审批</a>
+								</li> -->
+				               <!-- <li>
+								   <img class="headPics" src="img/imgs1/recent_actors.png" />
+								   <a href="#" id="showPeople" onclick="showPeople()">搜索员工</a>
+								</li> -->
+								<li>
+									<img class="headPics" src="img/imgs1/pie-chart-fill.png" />
+									<a href="#" id="showStatistics" onclick="showStatistics()">数据统计</a>
+								 </li>
+				            </ul>
+			            </li>
+			            <li class="active">
+			            	<a href="#" style="margin-right: 50px; font-size: 15px">会议预定</a>
+			            	<span class="glyphicon glyphicon-menu-right"></span>
+			            	<ul class="sub-menu">
+				               <li>
+								<img class="headPics" src="img/imgs1/create_new_folder.png" />
+								   <a href="#" id="addmeeting" onclick="addMeeting()">添加会议室</a>
+								</li>
+				               <li>
+									<img class="headPics" src="img/imgs1/table_chart.png" />
+								   <a href="#" id="showmeetingroom" onclick="showMeetingRoom()">查看会议室</a>
+								</li>
+				               <li>
+									<img class="headPics" src="img/imgs1/insert_invitation.png" />
+								   <a href="#" id="reserveMeetingPage" onclick="reserveMeetingPage(loginUserId)">预定会议</a>
+								</li>
+				               <li>
+									<img class="headPics" src="img/imgs1/screen_search_desktop.png" />
+								   <a href="#" id="meetingSearch" onclick="meetingSearch()">搜索会议</a>
+								</li>
+				            </ul>
+			            </li>
+						<li class="active">
+			            	<a href="#" style="margin-right: 50px; font-size: 15px">其它</a>
+			            	<span class="glyphicon glyphicon-menu-right"></span>
+			            	<ul class="sub-menu">
+								<li>
+									<img class="headPics" src="img/imgs1/format_paint.png" />
+								   <a href="#" id="adjustment" onclick="adjust()">设置和调整</a>
+								</li>
+				               <li>
+									<img class="headPics" src="img/imgs1/groups.png" />
+								   <a href="#" id="aboutus" onclick="aboutus()">关于我们</a>
+								</li>
+							   <!-- <li>
+								<img class="headPics" src="img/imgs1/hot_tub.png" />
+								   <a href="#" onclick="gohome()">关于我们</a>
+								</li> -->
+				            </ul>
+			            </li>
+						<!-- <li>
+			            	<a href="#" style="margin-right: 50px; font-size: 15px"></a>
+			            	<span class="glyphicon glyphicon-menu-right"></span>
+			            	<ul class="sub-menu">
+								<li>
+									<img class="headPics" src="img/imgs1/groups.png" />
+								   <a href="#">Retina 的发音是 /ˈrɛtnə/，重音在前</a>
+								</li>
+				            </ul>
+			            </li> -->
+			            
+			        </ul>
+		        </div>
+		        
+		        <!--右侧主体区域，占位10列-->
+		        <div class="col-md-10 main" style="padding:0;">
+				
+		            <iframe width="100%" height="750px" style="border: none;" id="myFrame" name="myFrame" src="index.html">
+					</iframe>
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+	<!-- <div id="theModal" class="modal fade" data-width="780" data-height="300">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-body">
+				
+			</div>
+		  </div>
+		</div>
+	  </div> -->
+
+	  <!- - 模态框:修改密码 - ->
+<div class="modal fade" id="updatePassword" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="line-height:20px;margin-top:-15px;margin-right:-10px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title position-absolute" id="exampleModalLabel" style="top:8px;left:12px;">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="editForm">
+                        <div class="form-group">
+                            <label for="recipient-name">原密码：</label>
+                            <input type="password" id="oldPassword" class="form-control" name="oldpassword" required placeholder="原密码">
+                            <div style="display: inline" id="tip1"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text">新密码：</label>
+                            <input type='password' id="newPassword" name="password1" class="form-control" required placeholder="长度为: 6-18">
+                            <div style="display: inline" id="tip2"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text">确认密码：</label>
+                            <input type='password' id="confirmPassword" name="password2" class="form-control" required placeholder="请再次输入新密码">
+                            <div style="display: inline" id="tip3"></div>
+                        </div>
+                    </form>
+                </div>
+<div class="modal-footer">
+<button onclick="changePassword()" class="btn btn-primary" >确定</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+	</body>
+</html>

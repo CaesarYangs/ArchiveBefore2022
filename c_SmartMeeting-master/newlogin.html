@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    <title>会议管理系统</title>
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+        <script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<link rel="stylesheet" href="js/metronic/plugins/bootstrap/css/bootstrap.css" />
+		<!-- Font Awesome Icons -->
+		<link rel="stylesheet" href="login/css/font-awesome.css" />
+		<link rel="stylesheet" href="js/metronic/plugins/simple-line-icons/css/simple-line-icons.css"/>
+		<link rel="stylesheet" href="login/css/animate.min.css"/>
+		<!-- Skins. Choose a skin from the css/skins
+	     folder instead of downloading all of them to reduce the load. -->
+		<link href="login/css/_all-skins.css" rel="stylesheet" type="text/css" />
+		<!-- Castle 1.0 -->
+		<link href="login/css/castle.css" rel="stylesheet" type="text/css" />
+		<!-- Theme style -->
+		<link href="js/login/css/castle-main.css" rel="stylesheet" type="text/css" />
+		<link href="js/metronic/plugins/layui/css/layui.css" rel="stylesheet" type="text/css" />
+		<link href="js/metronic/plugins/scrollbar/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<link href="js/login/css/fontsize.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="js/login/css/theme.css" />
+		<link rel="stylesheet" href="js/login/css/cover.css" />
+		<link rel="stylesheet" href="js/login/css/step.css" />
+		<link href="js/login/css/login.css" rel="stylesheet" type="text/css">
+	    <link rel="stylesheet" href="css/mask.css" />
+        <link rel="stylesheet" href="js/bootstrap-3.4.1-dist/css/bootstrap.css" />
+        <script type="text/javascript" src="js/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="js/alert/sweetalert.min.css" />
+        <script type="text/javascript" src="js/alert/sweetalert.min.js" ></script>
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+
+
+	
+		<script language="JavaScript">
+		var context="/hrm",__contextPath="/hrm",__extendOptions="main/options",__jsPath="/hrm/gdsp/js",__scriptPath="/hrm/gdsp/script";</script>
+	
+		<script src="js/login/utils-base.js"></script>
+	
+		<script src="js/metronic/plugins/layui/layui.js"></script>
+		<script src="js/metronic/plugins/layui/layui-config.js"></script>
+		<script src="js/login/util.js"></script>
+		<script src="js/login/autoheight.js"></script>
+		<script src="js/login/mask.js"></script>
+	
+		
+		<script type="text/javascript" src="js/login/lufylegend-1.10.1.simple.min.js"></script>
+		<script type="text/javascript" src="js/login/lufylegend.LoadingSample4-0.1.0.min.js"></script>
+		<script type="text/javascript" src="js/login/TweenLite.min.js"></script>
+		<!-- <script type="text/javascript" src="js/login/login.js"></script> -->
+		<script type="text/javascript" src="js/metronic/plugins/jQuery-Storage-API/jquery.storageapi.js" ></script>
+		<!-- <script type="text/javascript" src="login/js/login.js"></script> -->
+		<script type="text/javascript" src="js/login/alert.js"></script>
+		
+		
+		<script src="js/metronic/plugins/layui/layui.js"></script>
+		<script src="js/metronic/plugins/layui/layui-config.js"></script>
+		<script src="js/metronic/plugins/jQuery-Storage-API/jquery.storageapi.js"></script>
+		<script src="js/metronic/plugins/app/app.js"></script>
+
+        <script type="text/javascript" src="js/data.js"></script>
+        <script type="text/javascript" src="js/login.js"></script>
+        
+	</head>
+	
+
+	<body style="width: 100%;height: 100%;margin: 0;padding: 0; ">
+		<div class="bg-canvas">
+			<canvas id="demo-canvas" width="100%" height="100%" style="width: 100%;height: 99%;overflow: hidden;"></canvas>
+		</div>
+		
+        <div class="loginDiv">
+            <div class="headers">
+                <span class="h1-1">SmartMeeting</span>
+                <span class="h1-2">会议管理系统</span>
+            </div>
+            <form action="javascript:login()" onsubmit="return checkLogin()" class="outtertable">
+                <table class="inputTable">
+                    <tr>
+                        <td>
+                            <label>用户名：</label>
+                        </td>
+                        <td>
+                            <input id="username" onblur="blurUsername()" onfocus="focusLogin()" class="loginInp" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>密码：</label>
+                        </td>
+                        <td>
+                            <input id="pwd" onblur="blurpwd()" onfocus="focusLogin()" class="loginInp" type="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox">
+                            <span style="font-size: 14px">记住密码</span>
+                        </td>
+                    </tr>
+
+                    <tr style="text-align: center">
+                        <td colspan="2">
+                            <input class="loginButtons" type="submit" value="登录">
+                            <input class="loginButtons" type="reset" data-toggle="modal" data-target="#updatePassword" value="重置">
+                            <br/>
+                            <span id="errorspan" style="color: red"></span>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+
+
+        <!- - 模态框:修改密码 - ->
+        <div class="modal fade" id="updatePassword" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="line-height:20px;margin-top:-15px;margin-right:-10px;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title position-absolute" id="exampleModalLabel" style="top:8px;left:12px;">重置密码</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form name="editForm">
+                                <div class="form-group">
+                                    <label for="recipient-name">用户名</label>
+                                    <input type="text" id="R-username" class="form-control" name="oldpassword" required placeholder="原密码">
+                                    <div style="display: inline" id="tip1"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text">身份证号：</label>
+                                    <input type='text' id="R-cardid" name="password1" class="form-control" required placeholder="长度为: 6-18">
+                                    <div style="display: inline" id="tip2"></div>
+                                </div>
+                            </form>
+                        </div>
+        <div class="modal-footer">
+        <button onclick="resetPwd()" class="btn btn-primary" >确定</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+
+
+
+	</body>
+</html>       
+        
+        
+        
+        

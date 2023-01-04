@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addPeople</title>
+    <link rel="stylesheet" href="../../css/common.css" />
+	<link rel="stylesheet" href="../../css/People.css" />
+    <link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/demo.css" />
+	<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap-datetimepicker.min.css" media="screen" />
+    <script type="text/javascript" src="../../js/jquery-1.11.0.js" ></script>
+    <script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/paginathing.js" ></script>
+	<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="../../js/People/peopleList.js"></script>
+	<script language="javascript" type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="js/menu.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+
+
+    <script src="js/Vue/vuetest.js"></script>
+    <script src="js/Vue/vue.js"></script>
+</head>
+<body>
+    	<!-- 导航菜单栏1.0版本 -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">员工注册</a></li>
+		</ul>
+		<!-- 面包屑导航1.0 -->
+		<ul class="breadcrumb">
+			当前位置：
+			<li><a href="javascript:void(0);" onclick="GoHome()">Home</a></li>
+			<li><a href="../adminIndex.html">人员管理</a></li>
+			<li class="active">员工注册</li>
+		</ul>
+
+		<div class="mainadd">
+			<!-- 内容 -->
+<form class="class="col-md-10 col-md-offset-1 form-inline" role="form">
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">姓名</label>
+				<input type="text" class="form-control" id="name" placeholder="请输入姓名" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">身份证号：</label>
+				<input type="text" class="form-control" id="cardid" placeholder="身份证号" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-1">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">性别：</label>
+				<select class="form-control" id="sex" value="">
+					<option value="">请选择</option>	
+					<option>男</option>
+					<option>女</option>
+					<option>其它</option>
+					<option>不方便</option>
+					<option>恐龙</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="col-md-5">
+		<div class="row">
+			<label for="name">邮箱：</label>
+			<input type="text" class="form-control" id="name" placeholder="请输入邮箱">
+		</div>
+	</div>	 -->
+
+	<div class="col-md-4">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">邮箱：</label>
+				<input type="text" class="form-control" id="email" placeholder="请输入邮箱" value="">
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-5">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">学历：</label>
+				<input type="text" class="form-control" id="education" placeholder="请输入学历" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-5">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">专业：</label>
+				<input type="text" class="form-control" id="speciality" placeholder="请输入专业" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">政治面貌：</label>
+				<input type="text" class="form-control" id="party" placeholder="请输入政治面貌" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">手机：</label>
+				<input type="text" class="form-control" id="phone" placeholder="请输入手机号：" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">微信号：</label>
+				<input type="text" class="form-control" id="wechat" placeholder="请输入微信号" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-5">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">联系地址：</label>
+				<input type="text" class="form-control" id="address" placeholder="请输入联系地址" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">邮政编码：</label>
+				<input type="text" class="form-control" id="postcode" placeholder="请输入邮政编码" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">出生日期：</label>
+				<!-- <input type="text" class="form-control" id="birthday" placeholder="请输入出生日期" value=""> -->
+				<input class="form-control" cssclass="Wdate" onfocus="WdatePicker({skin:'default',dateFmt:'yyyy-MM-dd'});" name="birthday" id="birthday" placeholder="请输入出生日期">
+				<!-- <input class="form-control" cssclass="Wdate" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd HH:mm'});" name="birthday" id="birthday" placeholder="请输入会议时间"> -->
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">民族：</label>
+				<input type="text" class="form-control" id="race" placeholder="请输入民族" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">备注：</label>
+				<input type="text" class="form-control" id="remark" placeholder="请输入备注" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">所属部门</label>
+					<select class="form-control" id="dep">
+						<!-- <option value="0">请选择</option>	 -->
+						<!-- <option value="1">开发部</option>
+						<option value="2">测试部</option>
+						<option value="3">运维部</option>
+					  	<option value="4">市场部</option> -->
+					</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">所属薪资范围：</label>
+				<select class="form-control" id="levelid" value="">
+					<option value="0">请选择</option>	
+					<option value="1">3k-5k</option>
+					<option value="2">5k-8k</option>
+					<option value="3">8k-10k</option>
+					<option value="4">10k-15k</option>
+					<option value="5">15k-20k</option>
+					<option value="6">20k以上</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-2">
+		<div class="row">
+			<div class="form-group">
+				<label for="name">薪资：</label>
+				<input type="text" class="form-control" id="salary" placeholder="薪资" value="">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-10">
+		<div class="row">
+			<div class="form-group">
+				<label for="name"></label>
+			</div>
+		</div>
+	</div>
+
+			<div class="submit-btn">
+				<div class="col-md-2">
+					<div class="row addbtn">
+						<div class="col-md-8">
+							<button type="submit" class="btn submit-btn2" onclick="addPeople()">提交</button>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="row addbtn">
+						<div class="col-md-8">
+							<button type="submit" class="btn submit-btn3" onclick="cancelAdd()">取消</button>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+		</form>
+		</div>
+		
+
+		 
+
+</body>
+</html>

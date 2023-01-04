@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/Highcharts/code/highcharts.js"></script>
+		<script src="../js/Highcharts/code/modules/exporting.js"></script>
+		<script src="../js/Highcharts/code/modules/export-data.js"></script>
+		<script type="text/javascript" src="statistics.js"></script>
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/People.css" />
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/demo.css" />
+		<link rel="stylesheet" href="../../js/bootstrap-3.4.1-dist/css/bootstrap-datetimepicker.min.css" media="screen" />
+		<script type="text/javascript" src="../../js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/paginathing.js" ></script>
+		<script type="text/javascript" src="../../js/bootstrap-3.4.1-dist/js/bootstrap-datetimepicker.min.js"></script>
+		<!-- <script src="../js/statistics/statistics1.js"></script> -->
+	</head>
+	<body>
+		<!-- 导航菜单栏1.0版本 -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">统计数据</a></li>
+		</ul>
+		<!-- 面包屑导航1.0 -->
+		<ul class="breadcrumb">
+			当前位置：
+			<li><a href="#">Home</a></li>
+			<li><a href="">人员管理</a></li>
+			<li><a onclick="showStatistics()">统计数据</a></li>
+			<li class="active">部门统计</li>
+		</ul>
+		<div>
+			<div style="margin:50px;">
+				<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+				<script type="text/javascript">
+					var st1 = [];
+					var levelJsonArray = window.parent.levelJsonArray;
+					var employeeJsonArray = window.parent.employeeJsonArray;
+					for(var i = 0; i < levelJsonArray.length; i++) {
+						var level = levelJsonArray[i];
+						var count=0;
+						var totalcount = 0;
+						if (level!=undefined){
+							for (var j=0;j<employeeJsonArray.length;j++){
+								var employee = employeeJsonArray[j];
+								if(employee.name!="undefined"){
+									totalcount++;
+									if(employee.level==level.id){
+										count++;
+									}
+								}
+							}
+							var y = count/totalcount;
+							var levelData = {"name":level.range,"y":y};
+							st1[i] = levelData;
+	
+						}
+	
+					}
+	
+					Highcharts.chart('container', {
+						chart: {
+							plotBackgroundColor: null,
+							plotBorderWidth: null,
+							plotShadow: false,
+							type: 'pie'
+						},
+						title: {
+							text: '员工薪资统计'
+						},
+						tooltip: {
+							pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+						},
+						plotOptions: {
+							pie: {
+								allowPointSelect: true,
+								cursor: 'pointer',
+								dataLabels: {
+									enabled: true,
+									format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+									style: {
+										color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+									}
+								}
+							}
+						},
+						series: [{
+							name: '收入等级',
+							colorByPoint: true,
+							data: st1
+						}]
+					});
+	
+					
+				</script>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>
